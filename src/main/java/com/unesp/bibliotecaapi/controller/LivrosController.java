@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/livros")
@@ -65,24 +66,24 @@ public class LivrosController {
         novoLivro.setNome(novoLivroDto.getNome());
         novoLivro.setAno(novoLivroDto.getAno());
 
-        Categoria categoria = categoriaRepository.findByNome(novoLivroDto.getCategoria());
-        if (categoria == null) {
+        Optional<Categoria> categoria = categoriaRepository.findById(novoLivroDto.getCategoria());
+        if (categoria.isEmpty()) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "Categoria não encontrada"));
         }
 
-        Editora editora = editoraRepository.findByNome(novoLivroDto.getEditora());
-        if (editora == null) {
+        Optional<Editora> editora = editoraRepository.findById(novoLivroDto.getEditora());
+        if (editora.isEmpty()) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "Editora não encontrada"));
         }
 
-        Autor autor = autorRepository.findByNome(novoLivroDto.getAutor());
-        if (autor == null) {
+        Optional<Autor> autor = autorRepository.findById(novoLivroDto.getAutor());
+        if (autor.isEmpty()) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "Autor não encontrado"));
         }
 
-        novoLivro.setCategoria(categoria);
-        novoLivro.setEditora(editora);
-        novoLivro.setAutor(autor);
+        novoLivro.setCategoria(categoria.get());
+        novoLivro.setEditora(editora.get());
+        novoLivro.setAutor(autor.get());
 
         Livro livroSalvo = livroRepository.save(novoLivro);
 
@@ -100,7 +101,7 @@ public class LivrosController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> atualizarLivro(@PathVariable Long id, @RequestBody LivroDto livroDTO) {
+    public ResponseEntity<?> atualizarLivro(@PathVariable Long id, @RequestBody NovoLivroDto livroDto) {
 
         if (!livroRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
@@ -111,29 +112,29 @@ public class LivrosController {
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "Livro não encontrado"));
         }
 
-        livroExistente.setNome(livroDTO.getNome());
-        livroExistente.setAno(livroDTO.getAno());
+        livroExistente.setNome(livroDto.getNome());
+        livroExistente.setAno(livroDto.getAno());
 
-        Categoria categoria = categoriaRepository.findByNome(livroDTO.getCategoria());
-        if (categoria == null) {
+        Optional<Categoria> categoria = categoriaRepository.findById(livroDto.getCategoria());
+        if (categoria.isEmpty()) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "Categoria não encontrada"));
         }
 
-        Editora editora = editoraRepository.findByNome(livroDTO.getEditora());
-        if (editora == null) {
+        Optional<Editora> editora = editoraRepository.findById(livroDto.getEditora());
+        if (editora.isEmpty()) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "Editora não encontrada"));
         }
 
-        Autor autor = autorRepository.findByNome(livroDTO.getAutor());
-        if (autor == null) {
+        Optional<Autor> autor = autorRepository.findById(livroDto.getAutor());
+        if (autor.isEmpty()) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "Autor não encontrado"));
         }
 
-        Integer qtdExemplares = exemplarRepository.countByLivroId(livroDTO.getId());
+        Integer qtdExemplares = exemplarRepository.countByLivroId(id);
 
-        livroExistente.setCategoria(categoria);
-        livroExistente.setEditora(editora);
-        livroExistente.setAutor(autor);
+        livroExistente.setCategoria(categoria.get());
+        livroExistente.setEditora(editora.get());
+        livroExistente.setAutor(autor.get());
 
         Livro livroAtualizado = livroRepository.save(livroExistente);
 
