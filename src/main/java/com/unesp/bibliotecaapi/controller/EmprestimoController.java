@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/emprestimos")
 @Tag(name = "Emprestimos")
