@@ -11,7 +11,7 @@ public class NovoAlunoDto {
     private String nome;
     private String email;
     private String cpf;
-    private Integer telefone;
+    private Long telefone;
     private Long ra;
     private String curso;
 }
