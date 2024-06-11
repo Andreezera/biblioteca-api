@@ -21,10 +21,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("auth")
 @Tag(name = "Auth")
 public class AuthenticationController {
-
     @Autowired
     private AuthenticationManager authenticationManager;
-
     @Autowired
     private UsuarioRepository usuarioRepository;
     @Autowired
