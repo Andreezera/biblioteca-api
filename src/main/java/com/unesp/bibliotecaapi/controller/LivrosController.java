@@ -70,17 +70,17 @@ public class LivrosController {
         novoLivro.setNome(novoLivroDto.getNome());
         novoLivro.setAno(novoLivroDto.getAno());
 
-        Optional<Categoria> categoria = categoriaRepository.findById(novoLivroDto.getCategoria());
+        Optional<Categoria> categoria = categoriaRepository.findById(novoLivroDto.getIdCategoria());
         if (categoria.isEmpty()) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "Categoria não encontrada"));
         }
 
-        Optional<Editora> editora = editoraRepository.findById(novoLivroDto.getEditora());
+        Optional<Editora> editora = editoraRepository.findById(novoLivroDto.getIdEditora());
         if (editora.isEmpty()) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "Editora não encontrada"));
         }
 
-        Optional<Autor> autor = autorRepository.findById(novoLivroDto.getAutor());
+        Optional<Autor> autor = autorRepository.findById(novoLivroDto.getIdAutor());
         if (autor.isEmpty()) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "Autor não encontrado"));
         }
@@ -122,17 +122,17 @@ public class LivrosController {
         livroExistente.setNome(livroDto.getNome());
         livroExistente.setAno(livroDto.getAno());
 
-        Optional<Categoria> categoria = categoriaRepository.findById(livroDto.getCategoria());
+        Optional<Categoria> categoria = categoriaRepository.findById(livroDto.getIdCategoria());
         if (categoria.isEmpty()) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "Categoria não encontrada"));
         }
 
-        Optional<Editora> editora = editoraRepository.findById(livroDto.getEditora());
+        Optional<Editora> editora = editoraRepository.findById(livroDto.getIdEditora());
         if (editora.isEmpty()) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "Editora não encontrada"));
         }
 
-        Optional<Autor> autor = autorRepository.findById(livroDto.getAutor());
+        Optional<Autor> autor = autorRepository.findById(livroDto.getIdAutor());
         if (autor.isEmpty()) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "Autor não encontrado"));
         }

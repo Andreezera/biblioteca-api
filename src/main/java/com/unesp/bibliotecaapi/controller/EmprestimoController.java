@@ -39,7 +39,7 @@ public class EmprestimoController {
         emprestimo.setDataPrevistaDevolucao(request.getDataDevolucao());
         emprestimo.setFoiDevolvido(false);
 
-        Optional<Cliente> cliente = clienteRepository.findById(request.getClienteId());
+        Optional<Cliente> cliente = clienteRepository.findById(request.getIdCliente());
         if (cliente.isEmpty())
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "Cliente não encontrado"));
 

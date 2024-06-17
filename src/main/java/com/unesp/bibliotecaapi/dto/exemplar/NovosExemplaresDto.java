@@ -9,6 +9,6 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 public class NovosExemplaresDto {
-    private Long livroId;
+    private Long idLivro;
     private Integer quantidade;
 }

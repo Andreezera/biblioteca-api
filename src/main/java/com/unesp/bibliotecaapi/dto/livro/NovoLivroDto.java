@@ -10,7 +10,7 @@ import lombok.Setter;
 public class NovoLivroDto {
     private String nome;
     private Integer ano;
-    private Long categoria;
-    private Long editora;
-    private Long autor;
+    private Long idCategoria;
+    private Long idEditora;
+    private Long idAutor;
 }

@@ -31,7 +31,7 @@ public class ExemplarController {
     @PostMapping
     public ResponseEntity<?> createExemplar(@RequestBody NovosExemplaresDto novosExemplares) {
 
-        Livro livro = livroRepository.findById(novosExemplares.getLivroId()).orElse(null);
+        Livro livro = livroRepository.findById(novosExemplares.getIdLivro()).orElse(null);
         if (livro == null) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "Livro não encontrado"));
         }

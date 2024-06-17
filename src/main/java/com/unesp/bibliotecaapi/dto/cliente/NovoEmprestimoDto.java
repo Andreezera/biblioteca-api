@@ -10,7 +10,7 @@ import java.util.Date;
 @Getter
 @AllArgsConstructor
 public class NovoEmprestimoDto {
-        private Long clienteId;
+        private Long idCliente;
         private Long exemplarId;
         private Date dataDevolucao;
 }
