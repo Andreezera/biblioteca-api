@@ -53,6 +53,9 @@ public class LivrosController {
                     livro.getCategoria().getNome(),
                     livro.getEditora().getNome(),
                     livro.getAutor().getNome(),
+                    livro.getCategoria().getId(),
+                    livro.getEditora().getId(),
+                    livro.getAutor().getId(),
                     qtdExemplares
             );
             livroDtoList.add(livroDTO);
@@ -95,6 +98,9 @@ public class LivrosController {
                 livroSalvo.getCategoria().getNome(),
                 livroSalvo.getEditora().getNome(),
                 livroSalvo.getAutor().getNome(),
+                livroSalvo.getCategoria().getId(),
+                livroSalvo.getEditora().getId(),
+                livroSalvo.getAutor().getId(),
                 0
         );
 
@@ -146,6 +152,9 @@ public class LivrosController {
                 livroAtualizado.getCategoria().getNome(),
                 livroAtualizado.getEditora().getNome(),
                 livroAtualizado.getAutor().getNome(),
+                livroAtualizado.getCategoria().getId(),
+                livroAtualizado.getEditora().getId(),
+                livroAtualizado.getAutor().getId(),
                 qtdExemplares
         );
         return ResponseEntity.ok(livroAtualizadoDTO);
@@ -168,6 +177,9 @@ public class LivrosController {
                 livro.getCategoria().getNome(),
                 livro.getEditora().getNome(),
                 livro.getAutor().getNome(),
+                livro.getCategoria().getId(),
+                livro.getEditora().getId(),
+                livro.getAutor().getId(),
                 qtdExemplares
         );
         return ResponseEntity.ok(livroDTO);

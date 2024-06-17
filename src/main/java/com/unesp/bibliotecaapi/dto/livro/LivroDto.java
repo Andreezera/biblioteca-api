@@ -14,5 +14,8 @@ public class LivroDto {
     private String categoria;
     private String editora;
     private String autor;
+    private Long idCategoria;
+    private Long idEditora;
+    private Long idAutor;
     private Integer qtdExemplares;
 }
