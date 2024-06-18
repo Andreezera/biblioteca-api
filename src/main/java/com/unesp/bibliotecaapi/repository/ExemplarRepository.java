@@ -14,4 +14,9 @@ public interface ExemplarRepository extends JpaRepository<Exemplar, Long> {
 
     @Query("SELECT COUNT(e) FROM Exemplar e WHERE e.livro.id = :livroId")
     Integer countByLivroId(Long livroId);
+
+    @Query("SELECT e FROM Exemplar e WHERE NOT EXISTS (" +
+            "SELECT em FROM Emprestimo em WHERE em.exemplar = e AND em.foiDevolvido = false)" +
+            "ORDER BY e.livro.id")
+    List<Exemplar> findExemplaresDisponiveis();
 }

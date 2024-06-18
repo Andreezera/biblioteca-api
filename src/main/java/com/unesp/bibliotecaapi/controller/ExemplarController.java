@@ -55,4 +55,7 @@ public class ExemplarController {
     public void deleteExemplar(@PathVariable Long id) {
         exemplarRepository.deleteById(id);
     }
+
+    @GetMapping("/disponiveis")
+    public List<Exemplar> getAllDisponiveis() { return exemplarRepository.findExemplaresDisponiveis(); }
 }
