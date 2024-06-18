@@ -17,6 +17,6 @@ public interface ExemplarRepository extends JpaRepository<Exemplar, Long> {
 
     @Query("SELECT e FROM Exemplar e WHERE NOT EXISTS (" +
             "SELECT em FROM Emprestimo em WHERE em.exemplar = e AND em.foiDevolvido = false)" +
-            "ORDER BY e.livro.id")
+            "ORDER BY e.livro.id, e.id")
     List<Exemplar> findExemplaresDisponiveis();
 }
